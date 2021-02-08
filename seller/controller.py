@@ -1,11 +1,13 @@
+from typing import List
+
 from seller.models import Seller
 
 
 class SellerController:
-    def get_all(self):
+    def get_all(self) -> List[Seller]:
         return Seller.objects.all()
 
-    def get_by_id(self, id: int):
+    def get_by_id(self, id: int) -> Seller:
         return Seller.objects.filter(id=id).get()
 
     def create(self, full_name: str, email: str) -> Seller:
@@ -20,6 +22,6 @@ class SellerController:
         seller.save()
         return seller
 
-    def delete(self, id: int):
+    def delete(self, id: int) -> None:
         seller = self.get_by_id(id)
         seller.delete()
